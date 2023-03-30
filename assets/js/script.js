@@ -1,12 +1,13 @@
 // ELEMENTS
-const main        = document.querySelector('.grid-wrapper');
-const playBtn     = document.getElementById('play');
-const resetBtn    = document.getElementById('reset');
-const levelSelect = document.querySelector('select');
+const main         = document.querySelector('.grid-wrapper');
+const playBtn      = document.getElementById('play');
+const resetBtn     = document.getElementById('reset');
+const levelSelect  = document.querySelector('select');
 
 // DATA
-const gameLevels  = [100, 81, 49];
-
+const gameLevels   = [100, 81, 49];
+let mines          = [];
+const MINES_NUMBER = 16;
 
 
 
@@ -20,6 +21,8 @@ function play() {
         // console.log('square numbers -->', squareNumbers);
     playGroundGenerator(squareNumbers)
 
+    mines = minesGenerator(squareNumbers);
+        console.log('posizione delle mine in griglia -->', mines);
 }
 
 // RESET GAME
@@ -73,4 +76,47 @@ function squareGenerator(squareNumbers, id) {
 function clickedSquare() {
         // console.log('valore dello square -->', this.squareId);
     this.classList.toggle('clicked');
+}
+/////////////////////////////////////////////////////////////////////////
+function minesGenerator(squareNumbers) {
+    
+    const mines = [];
+    
+    while (mines.length < MINES_NUMBER) {
+        const mine = getRandomNumber(1, squareNumbers);
+
+        if (!mines.includes(mine))
+        mines.push(mine)
+    }
+
+    return mines;
+}
+/////////////////////////////////////////////////////////////////////////
+/**
+ * this function generates a random number
+ * @param {number} min 
+ * @param {number} max 
+ * @returns a random number
+ */
+function getRandomNumber(min, max) {
+    let error = false;
+    let errorMsg;
+    //controllo che gli estremi siano numeri
+    if (isNaN(min) || isNaN(max)) {
+        error = true;
+        errorMsg = 'min e max devono essere numeri'
+    }
+
+    if (min >= max) {
+        error = true;
+        errorMsg = 'min deve esser inferiore a max'
+    }
+
+    if (error) {
+        console.error(errorMsg)
+        // con il return la funzione si interrompe (si può evitare l'else)
+        return;
+    }
+
+    return Math.floor(Math.random() * (max - min +1) + min)
 }
