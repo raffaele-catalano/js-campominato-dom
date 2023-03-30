@@ -75,10 +75,10 @@ function squareGenerator(squareNumbers, id) {
  * this function make squares change color by clicking on them
  */
 function clickedSquare() {
-    this.classList.toggle('.clicked');
+    this.classList.toggle('clicked');
 
     if(mines.includes(this.squareId)) {
-        endgame(false);
+        endGame(false);
     } else {
         points++;
         this.removeEventListener('click', clickedSquare)
@@ -87,7 +87,7 @@ function clickedSquare() {
         const squares = document.querySelectorAll('.square');
 
         if (points === squares.length - MINES_NUMBER) {
-            endgame(true);
+            endGame(true);
         }
     }
 }
@@ -106,10 +106,26 @@ function minesGenerator(squareNumbers) {
     return mines;
 }
 /////////////////////////////////////////////////////////////////////////
-function endgame(winCondition) {
+function endGame(winCondition) {
 
     clickedMine ();
-    console.log('You Loose');
+
+    const gameOver = document.createElement('div');
+        gameOver.className = 'end-game'
+
+    main.append(gameOver)
+
+            console.log('You Loose');
+    
+    let endMessage = '';
+    
+    if (winCondition) {
+        endMessage = `YOU WIN! Your Score is: ${points}`
+    } else {
+        endMessage = `YOU LOOSE! Your Score is: ${points}`
+    }
+
+    document.getElementById('end-game-message').innerHTML = endMessage;
 }
 /////////////////////////////////////////////////////////////////////////
 function clickedMine() {
