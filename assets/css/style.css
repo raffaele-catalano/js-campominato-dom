@@ -82,3 +82,7 @@ select {
 .square49 {
     width: calc(100% / 7);
 }
+
+.square.clicked {
+    background-color: #1ED760;
+}
