@@ -28,7 +28,7 @@ button {
 select {
     width: 200px;
     height: 50px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 15px;
     background-color: #163263;
     border: 2px solid #b9b9b9;
@@ -64,7 +64,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* aspect-ratio: 1/1; */
+    aspect-ratio: 1/1;
     border: 2px solid #b9b9b9;
     cursor: pointer;
     font-weight: bold;
