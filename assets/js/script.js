@@ -32,6 +32,9 @@ resetBtn.addEventListener('click', reset)
 function reset() {
         // console.log('reset');
     main.innerHTML = '';
+    points         = 0;
+    mines          = 0;
+    document.getElementById('end-game-message').innerHTML = '';
 }
 
 
