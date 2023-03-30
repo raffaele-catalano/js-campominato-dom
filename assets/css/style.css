@@ -116,3 +116,57 @@ select {
     top: 0;
     left: 0;
 }
+
+/* media query */
+
+@media screen and (max-width: 768px) {
+    
+    .main-wrapper img {
+        width: 40%;
+    } 
+
+    button {
+        width: 120px;
+        height: 50px;
+        font-size: 1.4rem;
+        margin-top: 30px;
+    }
+
+    select {
+        width: 140px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .grid {
+        width: 500px;
+        height: 500px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    
+    .main-wrapper img {
+        width: 50%;
+    } 
+
+    button {
+        width: 100px;
+        height: 40px;
+        font-size: 1.3rem;
+        margin-top: 30px;
+    }
+
+    select {
+        width: 120px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .grid {
+        width: 450px;
+        height: 450px;
+    }
+    
+}
