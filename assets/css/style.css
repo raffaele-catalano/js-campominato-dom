@@ -29,7 +29,7 @@ select {
     width: 200px;
     height: 50px;
     font-size: 1.4rem;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     background-color: #163263;
     border: 2px solid #b9b9b9;
     color: white;
@@ -51,11 +51,15 @@ select {
     width: 20%;
 } 
 
+.grid-wrapper {
+    position: relative;
+}
+
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 550px;
-    height: 550px;
+    width: 500px;
+    height: 500px;
     background-color: #163263;
     box-shadow: 1px 1px 30px rgba(255, 255, 255, .5);
 }
@@ -89,4 +93,26 @@ select {
 
 .mine {
     background-color: brown;
+}
+
+.end-game {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+#end-game-message{
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.game-over {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
