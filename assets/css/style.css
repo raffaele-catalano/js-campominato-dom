@@ -86,3 +86,7 @@ select {
 .square.clicked {
     background-color: #1ED760;
 }
+
+.mine {
+    background-color: brown;
+}
