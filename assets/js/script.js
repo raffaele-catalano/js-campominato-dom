@@ -78,6 +78,7 @@ function squareGenerator(squareNumbers, id) {
  * this function make squares change color by clicking on them
  */
 function clickedSquare() {
+    //FIXME:colorazione della prima mina cliccata!!
     this.classList.toggle('clicked');
 
     if(mines.includes(this.squareId)) {
