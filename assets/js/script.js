@@ -8,6 +8,7 @@ const levelSelect  = document.querySelector('select');
 const gameLevels   = [100, 81, 49];
 let mines          = [];
 const MINES_NUMBER = 16;
+let points         = 0;
 
 
 
@@ -74,8 +75,21 @@ function squareGenerator(squareNumbers, id) {
  * this function make squares change color by clicking on them
  */
 function clickedSquare() {
-        // console.log('valore dello square -->', this.squareId);
-    this.classList.toggle('clicked');
+    this.classList.toggle('.clicked');
+
+    if(mines.includes(this.squareId)) {
+        endgame(false);
+    } else {
+        points++;
+        this.removeEventListener('click', clickedSquare)
+            console.log(points);
+
+        const squares = document.querySelectorAll('.square');
+
+        if (points === squares.length - MINES_NUMBER) {
+            endgame(true);
+        }
+    }
 }
 /////////////////////////////////////////////////////////////////////////
 function minesGenerator(squareNumbers) {
@@ -90,6 +104,26 @@ function minesGenerator(squareNumbers) {
     }
 
     return mines;
+}
+/////////////////////////////////////////////////////////////////////////
+function endgame(winCondition) {
+
+    clickedMine ();
+    console.log('You Loose');
+}
+/////////////////////////////////////////////////////////////////////////
+function clickedMine() {
+
+    const squares = document.querySelectorAll('.square');
+
+    for (let i = 0; i < squares.length; i++) {
+        const square = squares[i];
+            // console.log(square.squareId);
+        if (mines.includes(square.squareId)) {
+            // console.log('cliccato mina -->', square.squareId);
+            square.classList.add('mine');
+        }
+    }
 }
 /////////////////////////////////////////////////////////////////////////
 /**
