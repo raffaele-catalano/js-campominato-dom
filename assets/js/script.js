@@ -79,16 +79,16 @@ function squareGenerator(squareNumbers, id) {
  */
 function clickedSquare() {
     //FIXME:colorazione della prima mina cliccata!!
-    this.classList.toggle('clicked');
+    this.classList.add('clicked');
 
-    if(mines.includes(this.squareId)) {
+    if (mines.includes(this.squareId)) {
         endGame(false);
     } else {
         points++;
         this.removeEventListener('click', clickedSquare)
-            console.log(points);
+            console.log('punti accumulati -->', points);
 
-        const squares = document.querySelectorAll('.square');
+        const squares = document.getElementsByClassName('square');
 
         if (points === squares.length - MINES_NUMBER) {
             endGame(true);
@@ -134,13 +134,13 @@ function endGame(winCondition) {
 /////////////////////////////////////////////////////////////////////////
 function clickedMine() {
 
-    const squares = document.querySelectorAll('.square');
+    const squares = document.getElementsByClassName('square');
 
     for (let i = 0; i < squares.length; i++) {
         const square = squares[i];
             // console.log(square.squareId);
         if (mines.includes(square.squareId)) {
-            // console.log('cliccato mina -->', square.squareId);
+                console.log('cliccato mina -->', square.squareId);
             square.classList.add('mine');
         }
     }
