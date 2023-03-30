@@ -141,14 +141,14 @@ select {
     button {
         width: 120px;
         height: 50px;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         margin-top: 30px;
     }
 
     select {
         width: 140px;
         height: 50px;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
 
     .grid {
@@ -200,7 +200,7 @@ select {
     select {
         width: 120px;
         height: 40px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .grid {
