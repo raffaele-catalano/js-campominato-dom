@@ -1,6 +1,6 @@
 # Mine Sweeper
 >Utilizzando la griglia già preparata completare il gioco aggiungendo la logica alla base del suo funzionamento.
-===
+---
 ## Scope
 - Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta;
 - Nella stessa cella può esser posizionata al massimo una sola bomba, questo significa che nell'array delle bombe non potranno esserci due numeri uguali;
@@ -8,7 +8,7 @@
 - La partita terminerà quando l'utente *calpesterà* una bomba oppure quando sceglierà tutte le caselle presenti nella griglia che non contengono una bomba;
 - Al termine della partita il software comunicherà all'utente il suo punteggio, ovvero il numero di volte che l'utente ha scelto una cella in cui non v'era posizionata una bomba.
 ---
-### Bonus
+## Bonus
 Aggiungere una `select` accanto al bottone di avvio della partita. Tale elemento offrirà all'utente la possibilità di scegliere tra tre livelli di difficoltà:
 - difficoltà *easy* ⇒ 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
 - difficoltà *medium* ⇒ 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
