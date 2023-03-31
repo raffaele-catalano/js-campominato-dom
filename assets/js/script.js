@@ -5,19 +5,26 @@ const resetBtn     = document.getElementById('reset');
 const levelSelect  = document.querySelector('select');
 
 // DATA
-const gameLevels   = [100, 81, 49];
-let mines          = [];
-const MINES_NUMBER = 16;
-let points         = 0;
-
+const gameLevels    = [100, 81, 49];
+let mines           = [];
+const MINES_NUMBER  = 16;
+let points          =  0;
+let isPlaying       = false;
 
 
 // PLAY GAME
 playBtn.addEventListener('click', play)
 
-function play() {
-        // console.log('play');
+//FIXME: rimuovere aggiunta nuova griglia cliccando su play
 
+function play() {
+    // // se sto gia giocando
+    //     // alert stai gia giocando
+    //     // return
+    // if (isPlaying) return
+
+    // isPlaying= true;
+     // console.log('play');
     const squareNumbers = gameLevels[levelSelect.value];
         // console.log('square numbers -->', squareNumbers);
     playGroundGenerator(squareNumbers)
@@ -67,7 +74,7 @@ function squareGenerator(squareNumbers, id) {
     square.classList.add('square' + squareNumbers)
     square.squareId = id;
 
-    square.innerHTML = `<span>${id}</span>`
+    // square.innerHTML = `<span>${id}</span>`
 
     square.addEventListener('click', clickedSquare)
 
@@ -78,13 +85,23 @@ function squareGenerator(squareNumbers, id) {
  * this function make squares change color by clicking on them
  */
 function clickedSquare() {
+
     //FIXME:colorazione della prima mina cliccata!!
-    this.classList.add('clicked');
+    
 
     if (mines.includes(this.squareId)) {
         endGame(false);
     } else {
+
+        this.classList.add('clicked');
+
+        const numMines = getNearlyMines(this.squareId);
+        // getNearlySquares(this.squareId)
+        
+        this.innerHTML = `<span>${numMines}</span>`
+
         points++;
+
         this.removeEventListener('click', clickedSquare)
             console.log('punti accumulati -->', points);
 
@@ -96,6 +113,11 @@ function clickedSquare() {
     }
 }
 /////////////////////////////////////////////////////////////////////////
+/**
+ * this function generate mines in random position
+ * @param {position} squareNumbers 
+ * @returns 
+ */
 function minesGenerator(squareNumbers) {
     
     const mines = [];
@@ -110,6 +132,10 @@ function minesGenerator(squareNumbers) {
     return mines;
 }
 /////////////////////////////////////////////////////////////////////////
+/**
+ * this function determine the win/lose condition
+ * @param {condition} endGame 
+ */
 function endGame(winCondition) {
 
     clickedMine ();
@@ -132,8 +158,11 @@ function endGame(winCondition) {
     document.getElementById('end-game-message').innerHTML = endMessage;
 }
 /////////////////////////////////////////////////////////////////////////
+/**
+ * this function gives back the behaviour when *player* click on a mine
+ */
 function clickedMine() {
-
+//TODO: aggiungere immagine mina sulle caselle rosse
     const squares = document.getElementsByClassName('square');
 
     for (let i = 0; i < squares.length; i++) {
@@ -144,6 +173,66 @@ function clickedMine() {
             square.classList.add('mine');
         }
     }
+}
+/////////////////////////////////////////////////////////////////////////
+function getNearlySquares(idSquare) {
+
+    const squarePerRow = Math.sqrt(document.getElementsByClassName('square').length)
+
+    let nearlySquare = [
+        idSquare + 1,
+        idSquare - 1,
+        idSquare - squarePerRow,
+        idSquare - squarePerRow - 1,
+        idSquare - squarePerRow + 1,
+        idSquare + squarePerRow,
+        idSquare + squarePerRow - 1,
+        idSquare + squarePerRow + 1,
+    ];
+
+    if (idSquare % squarePerRow === 1) {
+        nearlySquare = [
+            idSquare + 1,
+            idSquare - squarePerRow,
+            idSquare - squarePerRow + 1,
+            idSquare + squarePerRow,
+            idSquare + squarePerRow + 1,
+        ]
+    } else if (idSquare % squarePerRow === 0) {
+        nearlySquare = [
+            idSquare - 1,
+            idSquare - squarePerRow,
+            idSquare - squarePerRow - 1,
+            idSquare + squarePerRow,
+            idSquare + squarePerRow - 1
+        ]
+        
+    } else {
+        nearlySquare [
+            idSquare + 1,
+            idSquare - 1,
+            idSquare - squarePerRow,
+            idSquare - squarePerRow - 1,
+            idSquare - squarePerRow + 1,
+            idSquare + squarePerRow,
+            idSquare + squarePerRow - 1,
+            idSquare + squarePerRow + 1
+        ]
+    }
+
+    return nearlySquare
+}
+/////////////////////////////////////////////////////////////////////////
+function getNearlyMines(idSquare) {
+    const nearlySquare = getNearlySquares(idSquare)
+    let numMines = 0;
+    
+    for (let i = 0; i < nearlySquare.length; i++) {
+        
+        if (mines.includes(nearlySquare[i])) numMines++;
+    }
+
+    return numMines
 }
 /////////////////////////////////////////////////////////////////////////
 /**
