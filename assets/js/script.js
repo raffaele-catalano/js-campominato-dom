@@ -3,6 +3,8 @@ const main         = document.querySelector('.grid-wrapper');
 const playBtn      = document.getElementById('play');
 const resetBtn     = document.getElementById('reset');
 const levelSelect  = document.querySelector('select');
+const soundLoose   = new Audio('assets/sound/gameover.wav');
+const soundWin     = new Audio('assets/sound/winner.wav');
 
 // DATA
 const gameLevels    = [100, 81, 49];
@@ -162,7 +164,6 @@ function endGame(winCondition) {
  * this function gives back the behaviour when *player* click on a mine
  */
 function clickedMine() {
-//TODO: aggiungere immagine mina sulle caselle rosse
     const squares = document.getElementsByClassName('square');
 
     for (let i = 0; i < squares.length; i++) {
@@ -171,6 +172,7 @@ function clickedMine() {
         if (mines.includes(square.squareId)) {
                 console.log('cliccato mina -->', square.squareId);
             square.classList.add('mine');
+            soundLoose.play();
         }
     }
 }
