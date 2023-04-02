@@ -98,6 +98,7 @@ select {
 
 .mine {
     background-color: brown;
+    content: url(../img/mine.png);
 }
 
 .end-game {
